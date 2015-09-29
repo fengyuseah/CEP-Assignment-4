@@ -1,0 +1,38 @@
+{%extends 'todos/base.html'%}
+{% load crispy_forms_tags %}
+{%block title%}
+Todo List
+{%endblock%}
+{% load staticfiles %}
+{%block content%}
+<link rel = "stylesheet" type = "text/css" href = "{% static 'todos/style.css' %}" />
+<div class="wrap">
+  	<div class="header"><span>&nbsp; &nbsp;Todo List</span><a href={% url 'todo_add' %} class="myButton" id='add'>+</a></div>
+	<div class="wrap-list">
+		<ol class="list">
+			{% if object_list %}
+			{% for todo in object_list %}
+			<li>
+				<input type="checkbox" id={{todo.id}}>
+				<label for={{todo.id}}>
+					<a href={% url 'todos_detail' todo.id %} class="underlined">
+						{% if todo.due_date %}
+						{% if todo.is_due_today %}
+						<font color='red'>{{todo.task}}</font>
+						{% else %}
+						{{todo.task}}
+						{% endif %}
+						{% else %}
+						{{todo.task}}
+						{% endif %}
+					</a>&nbsp; &nbsp; &nbsp; <font color='red'>{{todo.priority}}</font>
+				</label>
+			</li>
+			{% endfor %}
+			{% else %}
+			<li><label>No todos!</label></li>
+			{% endif %}
+		</ol>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+<head>
+  <title>
+    {%block title%}
+      To be replaced by actual title
+    {%endblock%}
+  </title>
+</head>
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=1%}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script type="text/css">
+.mynavbar {
+    display:block;
+    margin:0px;
+    padding:0px;
+    height:50px;
+}
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.dateinput').datepicker({ format: "yyyy/mm/dd" });
+      $('.datetimeinput').datetimepicker({format: "YYYY-MM-DD HH:mm"});
+    });
+</script>
+<body>
+<!--<div class="row">-->
+<!--<div class="mynavbar">
+        <ul class="nav nav-tabs navbar-right">-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/todos">Todos</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          {%if user.is_authenticated%}
+            <img src="/media/{{curruser.picture}}" height="30px" %} />
+            Hi {{user.username}}!
+          {%else%}
+            Login here!
+          {%endif%}
+                  
+          <span class="caret"></span>
+          </a>
+                <ul class="dropdown-menu">
+                  {%if user.is_authenticated%}
+                      <li><a href="/accounts/logout">Logout</a></li>
+                      <li><a href="/todos">View all my notes</a></li>
+                  {%else%}
+                      <li><a href="/accounts/login">Login</a></li>
+                      <li><a href="/accounts/register">Register</a></li> <!-- in case the poor person doesn't have an account -->
+                  {%endif%}
+                
+                      
+                </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+             <!-- <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                  {%if user.is_authenticated%}
+                      <img src="/media/{{curruser.picture}}" height="30px" %} />
+                      Hi {{user.username}}!
+                  {%else%}
+                      Login here!
+                  {%endif%}
+                  
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  {%if user.is_authenticated%}
+                      <li><a href="/accounts/logout">Logout</a></li>
+                      <li><a href="/todos">View all my notes</a></li>
+                  {%else%}
+                      <li><a href="/accounts/login">Login</a></li>
+                      <li><a href="/accounts/register">Register</a></li> <!-- in case the poor person doesn't have an account -->
+                  <!--{%endif%}
+                
+                      
+                </ul>
+              </li>
+            </ul>
+</div>
+<!--</div>-->
+{%block content%}
+  To be replaced by actual content
+{%endblock%}
+</body>
